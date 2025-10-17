@@ -1,0 +1,31 @@
+# Workflow triggered by Gearset standard webhook payload
+name: executeBatch
+
+on:
+  # Triggered when Gearset sends a standard payload webhook
+  repository_dispatch:
+    types: [gearset_deploy_complete]
+
+  # Optional: allows manual run from Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      # Enable long file paths on Windows (optional)
+      - name: Enable long paths in Git
+        run: git config --system core.longpaths true
+
+      # Print the Gearset payload to logs (for debug)
+      - name: Show Gearset webhook payload
+        run: echo "Received payload from Gearset."
+
+      # Access the payload JSON data (optional advanced use)
+      - name: Display event data
+        run: echo "${{ toJson(github.event) }}"
+
+      # Your custom command or logic after deployment
+      - name: Run a one-line script
+        run: echo "Gearset deployment succeeded — running executeBatch workflow."
