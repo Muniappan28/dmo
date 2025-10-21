@@ -20,7 +20,8 @@ jobs:
 
       # Access the payload JSON data (optional advanced use)
       - name: Display event data
-        run: echo "${{ toJson(github.event) }}"
+         shell: bash
+         run: echo '${{ toJson(github.event) }}'
 
       # Your custom command or logic after deployment
       - name: Run a one-line script
