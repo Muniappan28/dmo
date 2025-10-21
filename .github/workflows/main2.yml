@@ -31,7 +31,7 @@ jobs:
 
       - name: Show Deployment ID
         run: |
-          echo "🚀 Deployment ID: ${{ github.event.client_payload.deploymentId }}"
+          echo "🚀 Deployment ID: ${{ github.event.client_payload.deploymentid }}"
 
       - name: Show Job ID
         run: |
