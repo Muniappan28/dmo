@@ -1,0 +1,18 @@
+name: Show Gearset Job Details
+
+on:
+  repository_dispatch:
+    types: [gearset_deployment]
+
+jobs:
+  show-gearset-job-details:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Show Job Details
+        run: |
+          echo "📦 Job Name: ${{ github.event.client_payload.job.name }}"
+          echo "🧩 Run Status: ${{ github.event.client_payload.run.status }}"
+          echo "🚀 Run Type: ${{ github.event.client_payload.run.type }}"
+          echo "🕐 Start Time: ${{ github.event.client_payload.run.start_date_utc }}"
+          echo "🕓 End Time: ${{ github.event.client_payload.run.end_date_utc }}"
