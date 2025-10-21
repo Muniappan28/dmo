@@ -29,26 +29,4 @@ jobs:
         run: |
           echo "🔗 Details URL: ${{ github.event.client_payload.details_url }}"
 
-      - name: Show Deployment ID
-        run: |
-          echo "🚀 Deployment ID: ${{ github.event.client_payload.deploymentid }}"
-
-      - name: Show Job ID
-        run: |
-          echo "🆔 Job ID: ${{ github.event.client_payload.job_id }}"
-
-      - name: Show Source
-        run: |
-          echo "🌱 Source: ${{ github.event.client_payload.source }}"
-
-      - name: Show Target
-        run: |
-          echo "🎯 Target: ${{ github.event.client_payload.target }}"
-
-      - name: Show Source Type
-        run: |
-          echo "📂 Source Type: ${{ github.event.client_payload.source_type }}"
-
-      - name: Show Target Type
-        run: |
-          echo "📁 Target Type: ${{ github.event.client_payload.target_type }}"
+     
