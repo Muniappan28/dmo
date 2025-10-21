@@ -1,28 +1,29 @@
-name: Gearset Webhook Handler
+name: Show Gearset Job Details
 
 on:
   repository_dispatch:
     types: [run_my_bat]
 
 jobs:
-  handle_webhook:
+  show-job-details:
     runs-on: ubuntu-latest
     steps:
-      - name: Log received payload
-        run: echo "✅ Webhook received from Gearset"
-
-      - name: Display Gearset event data
+      - name: Show Job Name
         run: |
-          echo "Job Name: ${{ github.event.client_payload.JOB_NAME }}"
-          echo "Status: ${{ github.event.client_payload.RUN_SUCCESSFUL }}"
-          echo "Triggered By: ${{ github.event.client_payload.RUN_TRIGGERED_BY }}"
-          echo "Summary: ${{ github.event.client_payload.RUN_SUMMARY_TEXT }}"
-          echo "Details URL: ${{ github.event.client_payload.RUN_SUMMARY_URL }}"
+          echo "📦 Job Name: ${{ github.event.client_payload.job_name }}"
 
-      - name: Conditional status message
+      - name: Show Status
         run: |
-          if [ "${{ github.event.client_payload.RUN_SUCCESSFUL }}" = "true" ]; then
-            echo "✅ Deployment succeeded!"
-          else
-            echo "❌ Deployment failed!"
-          fi
+          echo "🧩 Status: ${{ github.event.client_payload.status }}"
+
+      - name: Show Triggered By
+        run: |
+          echo "👤 Triggered By: ${{ github.event.client_payload.triggered_by }}"
+
+      - name: Show Summary
+        run: |
+          echo "📝 Summary: ${{ github.event.client_payload.summary }}"
+
+      - name: Show Details URL
+        run: |
+          echo "🔗 Details URL: ${{ github.event.client_payload.details_url }}"
