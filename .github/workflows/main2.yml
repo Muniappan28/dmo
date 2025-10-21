@@ -1,0 +1,35 @@
+# Workflow triggered by Gearset webhook
+name: executeBatchs
+
+on:
+  repository_dispatch:
+    types: [run_my_bat]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Log received payload
+        run: echo "✅ Webhook received from Gearset"
+
+      - name: Display Gearset event data
+        run: |
+          echo "Event Type: ${{ github.event.action }}"
+          echo "Deployment Name: ${{ github.event.client_payload.deployment_name }}"
+          echo "Deployment Status: ${{ github.event.client_payload.deployment_status }}"
+          echo "Deployment URL: ${{ github.event.client_payload.deployment_url }}"
+
+      - name: Conditional status message
+        run: |
+          if ("${{ github.event.client_payload.deployment_status }}" -eq "Succeeded") {
+            echo "🎉 Gearset deployment succeeded!"
+          } elseif ("${{ github.event.client_payload.deployment_status }}" -eq "Failed") {
+            echo "❌ Gearset deployment failed!"
+          } else {
+            echo "ℹ️ Deployment status unknown."
+          }
+
+      - name: Continue workflow logic
+        run: echo "Executing custom post-deployment tasks..."
