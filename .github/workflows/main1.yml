@@ -13,9 +13,6 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      # Enable long file paths on Windows (optional)
-      - name: Enable long paths in Git
-        run: git config --system core.longpaths true
 
       # Print the Gearset payload to logs (for debug)
       - name: Show Gearset webhook payload
@@ -23,7 +20,7 @@ jobs:
 
       # Access the payload JSON data (optional advanced use)
       - name: Display event data
-        run: echo "${{ toJson(github.event) }}"
+        run: echo "${{ toJson(github.run_my_bat) }}"
 
       # Your custom command or logic after deployment
       - name: Run a one-line script
